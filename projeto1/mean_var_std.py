@@ -1,17 +1,21 @@
 import numpy as np
 
 def calculate(input_list):
+    # Check if the list has exactly 9 elements
     if len(input_list) != 9:
         raise ValueError("List must contain nine numbers.")
-    
+
+    # Convert the list to a 3x3 NumPy array
     matrix = np.array(input_list).reshape(3, 3)
+
+    # Compute metrics
     calculations = {
-        'mean': [list(matrix.mean(axis=0)), list(matrix.mean(axis=1)), matrix.mean()],
-        'variance': [list(matrix.var(axis=0)), list(matrix.var(axis=1)), matrix.var()],
-        'standard deviation': [list(matrix.std(axis=0)), list(matrix.std(axis=1)), matrix.std()],
-        'max': [list(matrix.max(axis=0)), list(matrix.max(axis=1)), matrix.max()],
-        'min': [list(matrix.min(axis=0)), list(matrix.min(axis=1)), matrix.min()],
-        'sum': [list(matrix.sum(axis=0)), list(matrix.sum(axis=1)), matrix.sum()]
+        'mean': [matrix.mean(axis=0).tolist(), matrix.mean(axis=1).tolist(), matrix.mean()],
+        'variance': [matrix.var(axis=0).tolist(), matrix.var(axis=1).tolist(), matrix.var()],
+        'standard deviation': [matrix.std(axis=0).tolist(), matrix.std(axis=1).tolist(), matrix.std()],
+        'max': [matrix.max(axis=0).tolist(), matrix.max(axis=1).tolist(), matrix.max()],
+        'min': [matrix.min(axis=0).tolist(), matrix.min(axis=1).tolist(), matrix.min()],
+        'sum': [matrix.sum(axis=0).tolist(), matrix.sum(axis=1).tolist(), matrix.sum()]
     }
-    
+
     return calculations
